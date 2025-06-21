@@ -19,16 +19,16 @@ int main() {
  
 	//DECLARE product_ids, product_names, product_prices, product_ids_in_cart, product_names_in_cart, product_prices_in_cart, discount_required_products, 
 	// discounts, discount_original_products and user_input
-	int* product_ids = new int[1];  
-	int* product_prices = new int[1];
-	int* product_ids_in_cart = new int[1];
-	int* product_prices_in_cart = new int[1];
-	int* discount_required_products = new int[1];
-	int* discounts = new int[1];
-	int* discount_original_products = new int[1];
+	int* product_ids = new int[0];  
+	float* product_prices = new float[0];
+	int* product_ids_in_cart = new int[0];
+	float* product_prices_in_cart = new float[0];
+	int* discount_required_products = new int[0];
+	float* discounts = new float[0];
+	int* discount_original_products = new int[0];
 
-	string* product_names = new string[1];
-	string* product_names_in_cart = new string[1];
+	string* product_names = new string[0];
+	string* product_names_in_cart = new string[0];
 	int user_input;
 
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
@@ -38,9 +38,9 @@ int main() {
 	size_t searcher;
 
 	//ASSIGN list_of_products_size to 1, ASSIGN discounts_list_size to 1 and ASSIGN cart_size to 1
-	int list_of_products_size = 1;
-	int discounts_list_size = 1;
-	int cart_size = 1;
+	int list_of_products_size = 0;
+	int discounts_list_size = 0;
+	int cart_size = 0;
 
 	//ASSIGN is_shopping to true
 	bool is_shopping = true;
@@ -61,7 +61,7 @@ int main() {
 
 			int* temp_required_products = new int[discounts_list_size + 1];
 			int* temp_original_products = new int[discounts_list_size + 1];
-			int* temp_discounts = new int[discounts_list_size + 1];
+			float* temp_discounts = new float[discounts_list_size + 1];
 
 			//FOR evey entry in discount_required_products, discount_original_products and discounts 
 			// DO ASSIGN temp_required_products[i] to discount_required_products[i], ASSIGN temp_original_products[i] to discount_original_products[i],
@@ -75,14 +75,9 @@ int main() {
 
 			}
 
-			//DELETE discount_required_products, discount_original_products, and discounts from memory
-			delete[] discount_required_products;
-			delete[] discount_original_products;
-			delete[] discounts;
-
 			//DECLARE col_1, col_2, col_3, and line_reader
-			int col_1;
-			float col_2, col_3;
+			int col_1, col_2;
+			float col_3;
 			std::istringstream line_reader(current_line);
 
 			//ASSIGN col_1, col_2, col_3 and to line_reader
@@ -94,8 +89,13 @@ int main() {
 			temp_original_products[discounts_list_size] = col_2;
 			temp_discounts[discounts_list_size] = col_3;
 
+			//DELETE discount_required_products, discount_original_products, and discounts from memory
+			delete[] discount_required_products;
+			delete[] discount_original_products;
+			delete[] discounts;
+
 			//ASSIGN discount_required_products = temp_required_products, ASSIGN discount_original_products = temp_original_products, and 
-			// ASSIGN discounts = temp_discounts
+			//ASSIGN discounts = temp_discounts
 			discount_required_products = temp_required_products;
 			discount_original_products = temp_original_products;
 			discounts = temp_discounts;

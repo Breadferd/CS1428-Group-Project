@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CMakeFiles\\CS1428_Group_Project.dir\\main.cpp.obj",
+            "outputs": [
+                "C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\Group Project\\CS1428-Group-Project\\out\\build\\x64-Debug\\vc140.pdb",
+                "CMakeFiles\\CS1428_Group_Project.dir\\main.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}

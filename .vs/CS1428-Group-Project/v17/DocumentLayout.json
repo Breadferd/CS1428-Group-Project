@@ -5,6 +5,12 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\Group Project\\CS1428-Group-Project\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\Assignment 1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\PreLab2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,9 +34,55 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\Group Project\\CS1428-Group-Project\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAAMAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-20T19:21:44.341Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "14416720-17ab-4084-a2b0-cff45c3c75b8",
+        "Display": 1,
+        "X": 54,
+        "Y": 183,
+        "Width": 1582,
+        "Height": 784,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\PreLab2\\main.cpp",
+              "RelativeDocumentMoniker": "..\\..\\PreLab2\\main.cpp",
+              "ToolTip": "C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\PreLab2\\main.cpp",
+              "RelativeToolTip": "..\\..\\PreLab2\\main.cpp",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAE0AAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-21T06:17:43.982Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\Assignment 1\\main.cpp",
+              "RelativeDocumentMoniker": "..\\..\\Assignment 1\\main.cpp",
+              "ToolTip": "C:\\Users\\nah09\\Documents\\College Stuff\\Intro to CS\\Assignment 1\\main.cpp",
+              "RelativeToolTip": "..\\..\\Assignment 1\\main.cpp",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwE4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-21T05:47:56.919Z",
               "EditorCaption": ""
             }
           ]

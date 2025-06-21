@@ -1,13 +1,15 @@
 //Author(s): Nate Hartway
 //Purpose: Allow a user to purchase products from a grocery store. When the user is ready to checkout show them what theyre purchasing and their total.
 //Date:6/21/2025
-//Version:v0.2
+//Version:v0.3
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
 using namespace std;
+
+void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
 
 //main
 //Purpose: Display products available for purchase and get users input
@@ -31,12 +33,6 @@ int main() {
 	string* product_names_in_cart = new string[0];
 	int user_input;
 
-	//DECLARE file_reader, current_line, last_digit_pos and searcher
-	fstream file_reader;
-	string current_line;
-	size_t last_digit_pos;
-	size_t searcher;
-
 	//ASSIGN list_of_products_size to 1, ASSIGN discounts_list_size to 1 and ASSIGN cart_size to 1
 	int list_of_products_size = 0;
 	int discounts_list_size = 0;
@@ -44,6 +40,67 @@ int main() {
 
 	//ASSIGN is_shopping to true
 	bool is_shopping = true;
+
+	//CALL get_products() and CALL get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts)
+	get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts);
+
+	//WHILE is_shopping IS true DO DISPLAY products from products file and checkout command 
+	while (is_shopping == true)
+	{
+
+		//FOR every product in product_names OUTPUT product_names[i]
+		for (int i = 0; i < list_of_products_size; i++)
+		{
+
+			cout << product_names[i] << endl;
+
+		}
+
+		//OUTPUT Please select a product. If you're ready to checkout please enter -1
+		cout << "Please select a product. If you're ready to checkout please enter -1" << endl;
+
+		//ASSIGN user_input to user input
+		cin >> user_input;
+
+		//IF user_input >= 0 AND user_input <= list_of_products_size DO CALL check_discount_eligibility and CALL calculate_total
+		if (user_input >= 0 && user_input <= list_of_products_size)
+		{
+
+
+
+		}
+		//ELSE IF user_input IS -1 DO ASSIGN is_shopping to false
+		else if (user_input == -1)
+		{
+
+			is_shopping = false;
+
+		}
+		//ELSE DO OUTPUT Please enter a valid input
+		else
+		{
+				
+			cout << "Please enter a valid input" << endl;
+
+		}
+
+
+	}
+
+
+//END	
+    return 0;
+    
+}
+
+void get_discounts(int &discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts)
+{
+
+	//DECLARE file_reader, current_line, last_digit_pos and searcher
+	fstream file_reader;
+	string current_line;
+	size_t last_digit_pos;
+	size_t searcher;
 
 	//INPUT file_reader
 	file_reader.open("Discounts.txt");
@@ -107,51 +164,4 @@ int main() {
 
 	}
 
-	//WHILE is_shopping IS true DO DISPLAY products from products file and checkout command 
-	while (is_shopping == true)
-	{
-
-		//FOR every product in product_names OUTPUT product_names[i]
-		for (int i = 0; i < list_of_products_size; i++)
-		{
-
-			cout << product_names[i] << endl;
-
-		}
-
-		//OUTPUT Please select a product. If you're ready to checkout please enter -1
-		cout << "Please select a product. If you're ready to checkout please enter -1" << endl;
-
-		//ASSIGN user_input to user input
-		cin >> user_input;
-
-		//IF user_input >= 0 OR user_input <= list_of_products_size DO CALL check_discount_eligibility and CALL calculate_total
-		if (user_input >= 0 || user_input <= list_of_products_size)
-		{
-
-
-
-		}
-		//ELSE IF user_input IS -1 DO ASSIGN is_shopping to false
-		else if (user_input == -1)
-		{
-
-			is_shopping = false;
-
-		}
-		//ELSE DO OUTPUT Please enter a valid input
-		else
-		{
-				
-			cout << "Please enter a valid input" << endl;
-
-		}
-
-
-	}
-
-
-//END	
-    return 0;
-    
 }

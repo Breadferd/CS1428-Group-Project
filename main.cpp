@@ -10,6 +10,7 @@
 using namespace std;
 
 void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
+void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size)
 
 //main
 //Purpose: Display products available for purchase and get users input
@@ -164,4 +165,44 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 
 	}
 
+}
+
+void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size) {
+    string current_line;
+    list_size = 0;
+		if (searcher != string::npos)
+		{
+    cout << "Enter product ID, Name, and Price" << endl;
+
+    for (i=0; list_size > i; i++) {
+        cout << "Product " << list_size + 1 << ": ";
+        cin >> current_line;
+
+
+
+        string temp_id = current_line;
+        string temp_name;
+        double temp_price;
+
+        cin >> temp_name >> temp_price;
+
+        product_ids[list_size] = temp_id;
+        product_names[list_size] = temp_name;
+        product_prices[list_size] = temp_price; }
+
+                                    
+		}
+				//DECLARE col_1, col_2, col_3, and line_reader
+			int col_1, col_2;
+			float col_3;
+			std::istringstream line_reader(current_line);
+
+			//ASSIGN col_1, col_2, col_3 and to line_reader
+			line_reader >> col_1 >> col_2 >> col_3;
+
+			//ASSIGN temp_ID to col_1, ASSIGN temp_names to col_2, and 
+			//ASSIGN temp_price to col_3
+			temp_id[list_size] = col_1;
+			temp_name[list_size] = col_2;
+			temp_price[list_size] = col_3;
 }

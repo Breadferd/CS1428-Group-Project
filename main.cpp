@@ -10,7 +10,7 @@
 using namespace std;
 
 void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
-void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size)
+void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size);
 
 //main
 //Purpose: Display products available for purchase and get users input
@@ -169,9 +169,16 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 
 void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size) {
     string current_line;
+
+	size_t last_digit_pos;
+	size_t searcher;
     list_size = 0;
 		if (searcher != string::npos)
 		{
+	string temp_id 
+        string temp_name;
+        double temp_price;
+			
     cout << "Enter product ID, Name, and Price" << endl;
 
     for (i=0; list_size > i; i++) {
@@ -179,16 +186,14 @@ void get_products(string product_ids[], string product_names[], double* product_
         cin >> current_line;
 
 
+	temp_id = current_line; 
 
-        string temp_id = current_line;
-        string temp_name;
-        double temp_price;
 
         cin >> temp_name >> temp_price;
 
-        product_ids[list_size] = temp_id;
-        product_names[list_size] = temp_name;
-        product_prices[list_size] = temp_price; }
+        product_ids[i] = temp_id;
+        product_names[i] = temp_name;
+        product_prices[i] = temp_price; }
 
                                     
 		}

@@ -43,7 +43,7 @@ int main() {
 	bool is_shopping = true;
 
 	//CALL get_products() and CALL get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts)
-	get_products(product_ids, product_names, product_prices, list_size);
+	get_products(product_ids, product_names, product_prices, list_of_products_size);
 	get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts);
 
 	//WHILE is_shopping IS true DO DISPLAY products from products file and checkout command 

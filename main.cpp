@@ -171,7 +171,7 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size) {
 	
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
-    string current_line;
+    int* current_line;
 	fstream filereader;
 	size_t last_digit_pos;
 	size_t searcher;

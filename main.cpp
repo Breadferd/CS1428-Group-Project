@@ -191,7 +191,7 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
 			
     cout << "Enter product ID, Name, and Price" << endl;
 
-    for (int i=0; list_size > i; i++) {
+    for (int* i=0; list_size > i; i++) {
         cout << "Product " << list_size + 1 << ": ";
         cin >> current_line;
 

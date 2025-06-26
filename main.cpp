@@ -95,6 +95,12 @@ int main() {
     
 }
 
+//Get_discounts
+//Author: Nate Hartway
+//Objective : Get all of the discount information from the discounts file and sort the information into the correct arrays.Increment the arrays to how much information is in the file.
+//Pre-condition : There must be a discounts file with information in it.
+//Post-condition : Return three parallel arrays filled with the sorted discount information
+
 void get_discounts(int &discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts)
 {
 
@@ -237,7 +243,7 @@ void calculate_total(int user_input, int list_of_products_size, int discounts_li
 	//FOR every entry in product_ids int. i = 0; i < list_of_products_size 
 
 		//IF user_input == product_ids[i] DO ASSIGN selected_product_name to product_names[i] and ASSIGN selected_product_cost to product_prices 
-	for (int i = 0; i < list_of_products_size) {
+	for (int i = 0; i < list_of_products_size; i++) {
 		if (user_input == product_ids[i]) {
 			product_names[i] = selected_product_name;
 			product_prices[i] = selected_product_cost;

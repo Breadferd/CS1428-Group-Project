@@ -1,7 +1,7 @@
 //Author(s): Nate Hartway
 //Purpose: Allow a user to purchase products from a grocery store. When the user is ready to checkout show them what theyre purchasing and their total.
-//Date:6/21/2025
-//Version:v0.3
+//Date:6/22/2025
+//Version:v0.4
 
 #include <iostream>
 #include <string>
@@ -206,3 +206,79 @@ void get_products(string product_ids[], string product_names[], double* product_
 			temp_name[list_size] = col_2;
 			temp_price[list_size] = col_3;
 }
+
+//Author: Ernesto Jaimes-Lara 
+//Objective: Function to calculate items in cart 
+//Pre-Condition: User adds valid product to cart 
+//Post-Condition: Calculate and display items with total 
+
+//START 
+
+
+void calculate_total(int user_input, int list_of_products_size, int discounts_list_size, int cart_size, int* discount_required_products, int* product_ids, int* product_ids_in_cart, int* discount_required_products, float* discounts, int* discount_original_products) {
+	//DECLARE function calculate_total()  
+	string name;
+	float cost;
+	//DECLARE string name 
+	float total = 0;
+	//DECLARE float total = 0 
+	//FOR every entry in product_ids int. i = 0; i < list_of_products_size 
+
+		//IF user_input == product_ids[i] DO ASSIGN selected_product_name to product_names[i] and ASSIGN selected_product_cost to product_prices 
+	for (int i = 0; i < list_of_products_size) {
+		if (user_input == product_ids[i]) {
+			product_names[i] = selected_product_name;
+			product_prices[i] = selected_product_cost;
+
+		}
+	}
+	//FOR every entry in discount_required_products. int j = 0; j < discounts_list_size 
+	for (int j = 0; j < discounts_list_size; j++) {
+		//IF user_input == discount_required_products[j] DO
+		if (user_input == discount_required_products[j]) {
+
+			//FOR every entry in cart  int. k = 0 
+			for (int k = 0; k < cart_size; k++) {
+				//If  discount_original_products[j] == product_ids_in_cart[k] DO ASSIGN product_prices_in_cart[k] to discounts[j] 
+				if (discount_original_products[j] == product_ids_in_cart[k]) {
+					discounts[j] = product_prices_in_cart[k];
+				}
+			}
+		}
+		//ELSE IF user_input == discount_original_products[j] 
+		else if (user_input == discount_original_products[j]) {
+
+			//FOR every entry in cart int g  int g; g < cart_size 
+			for (int g = 0; g < cart_size; g++) {
+				if (discount_required_products[j] == product_ids_in_cart[k]) {
+					discounts[j] = cost;
+				}
+			}
+		}
+	}
+	//If  discount_ required _products[j] == product_ids_in_cart[k] DO ASSIGN cost to discounts[j] 
+
+
+
+
+
+//DISPLAY product_names_in_cart[i] loop 
+	for (int i = 0; i < cart_size; i++) {
+		total += product_prices_in_cart[i];
+	}
+
+	// ASSIGN total += product_prices_in_cart[i] loop 
+
+	//INCREMENT i for both 
+
+
+}
+// END LOOP 
+
+
+cout << "Cart Total: " << total << endl
+//DISPLAY total 
+
+
+
+//END 

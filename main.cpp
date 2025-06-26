@@ -203,9 +203,9 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
     	temp_name = product_names[i];
         temp_price =product_prices[i] ; }
 			//DECLARE col_1, col_2, col_3, and line_reader
-			int col_1;
+			int* col_1;
 			string col_2;
-			float col_3;
+			float* col_3;
 			std::istringstream line_reader(current_line);
 
 			//ASSIGN col_1, col_2, col_3 and to line_reader

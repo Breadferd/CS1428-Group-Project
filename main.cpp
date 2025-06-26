@@ -185,13 +185,13 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
 	 list_size = 0;
 		if (searcher != string::npos)
 		{
-	string temp_id; 
+	int temp_id;
         string temp_name;
         double temp_price;
 			
     cout << "Enter product ID, Name, and Price" << endl;
 
-    for (i=0; list_size > i; i++) {
+    for (int i=0; list_size > i; i++) {
         cout << "Product " << list_size + 1 << ": ";
         cin >> current_line;
 
@@ -199,11 +199,12 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
 
         cin >> temp_name >> temp_price;
 
-        product_ids[i] = temp_id;
-        product_names[i] = temp_name;
-        product_prices[i] = temp_price; }
+    	temp_id = product_ids[i];
+    	temp_name = product_names[i];
+        temp_price =product_prices[i] ; }
 			//DECLARE col_1, col_2, col_3, and line_reader
-			int col_1, col_2;
+			int col_1;
+			string col_2;
 			float col_3;
 			std::istringstream line_reader(current_line);
 
@@ -212,12 +213,11 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
 
 			//ASSIGN temp_ID to col_1, ASSIGN temp_names to col_2, and 
 			//ASSIGN temp_price to col_3
-			temp_id[list_size] = col_1;
-			temp_name[list_size] = col_2;
-			temp_price[list_size] = col_3;           
+			temp_id = col_1;
+			temp_name = col_2;
+			temp_price = col_3;
 			}
 		}
-}
 
 //Author: Ernesto Jaimes-Lara 
 //Objective: Function to calculate items in cart 

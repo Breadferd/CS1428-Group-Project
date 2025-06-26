@@ -10,7 +10,7 @@
 using namespace std;
 
 void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
-void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size);
+void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size);
 
 //main
 //Purpose: Display products available for purchase and get users input
@@ -174,16 +174,16 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 
 }
 
-void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size) {
+void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size) {
 	
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
-    string current_line;
+    int* current_line;
 	fstream filereader;
 	size_t last_digit_pos;
 	size_t searcher;
 
 	//INPUT file_reader
-	file_reader.open("Products.txt");
+	filereader.open("Products.txt");
 	
 		//ASSIGN searcher to current_line.find_first_of("0123456789");
 		searcher = current_line.find_first_of("0123456789");
@@ -191,13 +191,13 @@ void get_products(string product_ids[], string product_names[], double* product_
 	 list_size = 0;
 		if (searcher != string::npos)
 		{
-	string temp_id; 
+	int* temp_id;
         string temp_name;
-        double temp_price;
+        double* temp_price;
 			
     cout << "Enter product ID, Name, and Price" << endl;
 
-    for (i=0; list_size > i; i++) {
+    for (int* i=0; list_size > i; i++) {
         cout << "Product " << list_size + 1 << ": ";
         cin >> current_line;
 
@@ -205,12 +205,13 @@ void get_products(string product_ids[], string product_names[], double* product_
 
         cin >> temp_name >> temp_price;
 
-        product_ids[i] = temp_id;
-        product_names[i] = temp_name;
-        product_prices[i] = temp_price; }
+    	temp_id = product_ids[i];
+    	temp_name = product_names[i];
+        temp_price =product_prices[i] ; }
 			//DECLARE col_1, col_2, col_3, and line_reader
-			int col_1, col_2;
-			float col_3;
+			int* col_1;
+			string col_2;
+			float* col_3;
 			std::istringstream line_reader(current_line);
 
 			//ASSIGN col_1, col_2, col_3 and to line_reader
@@ -218,12 +219,11 @@ void get_products(string product_ids[], string product_names[], double* product_
 
 			//ASSIGN temp_ID to col_1, ASSIGN temp_names to col_2, and 
 			//ASSIGN temp_price to col_3
-			temp_id[list_size] = col_1;
-			temp_name[list_size] = col_2;
-			temp_price[list_size] = col_3;           
+			temp_id = col_1;
+			temp_name = col_2;
+			temp_price = col_3;
 			}
 		}
-}
 
 //Author: Ernesto Jaimes-Lara 
 //Objective: Function to calculate items in cart 

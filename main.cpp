@@ -10,7 +10,7 @@
 using namespace std;
 
 void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
-void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size)
+void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size);
 
 //main
 //Purpose: Display products available for purchase and get users input
@@ -43,8 +43,11 @@ int main() {
 	bool is_shopping = true;
 
 	//CALL get_products() and CALL get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts)
+	get_products(product_ids, product_names, product_prices, list_size);
 	get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts);
 
+
+	
 	//WHILE is_shopping IS true DO DISPLAY products from products file and checkout command 
 	while (is_shopping == true)
 	{
@@ -107,8 +110,7 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 	file_reader.open("Discounts.txt");
 
 	//WHILE file_reader != null 
-	while (getline(file_reader, current_line))
-	{
+	
 
 		//ASSIGN searcher to current_line.find_first_of("0123456789");
 		searcher = current_line.find_first_of("0123456789");
@@ -168,31 +170,40 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 }
 
 void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size) {
+	
+	//DECLARE file_reader, current_line, last_digit_pos and searcher
     string current_line;
-    list_size = 0;
+	fstream filereader;
+	size_t last_digit_pos;
+	size_t searcher;
+
+	//INPUT file_reader
+	file_reader.open("Products.txt");
+	
+		//ASSIGN searcher to current_line.find_first_of("0123456789");
+		searcher = current_line.find_first_of("0123456789");
+			//IF searcher IS NOT NULL DO DECALRE temp_required_products, temp_original_products, and temp_discounts
+	 list_size = 0;
 		if (searcher != string::npos)
 		{
+	string temp_id; 
+        string temp_name;
+        double temp_price;
+			
     cout << "Enter product ID, Name, and Price" << endl;
 
     for (i=0; list_size > i; i++) {
         cout << "Product " << list_size + 1 << ": ";
         cin >> current_line;
 
-
-
-        string temp_id = current_line;
-        string temp_name;
-        double temp_price;
+	temp_id = current_line; 
 
         cin >> temp_name >> temp_price;
 
-        product_ids[list_size] = temp_id;
-        product_names[list_size] = temp_name;
-        product_prices[list_size] = temp_price; }
-
-                                    
-		}
-				//DECLARE col_1, col_2, col_3, and line_reader
+        product_ids[i] = temp_id;
+        product_names[i] = temp_name;
+        product_prices[i] = temp_price; }
+			//DECLARE col_1, col_2, col_3, and line_reader
 			int col_1, col_2;
 			float col_3;
 			std::istringstream line_reader(current_line);
@@ -204,7 +215,9 @@ void get_products(string product_ids[], string product_names[], double* product_
 			//ASSIGN temp_price to col_3
 			temp_id[list_size] = col_1;
 			temp_name[list_size] = col_2;
-			temp_price[list_size] = col_3;
+			temp_price[list_size] = col_3;           
+			}
+		}
 }
 
 //Author: Ernesto Jaimes-Lara 

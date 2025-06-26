@@ -174,14 +174,14 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 
 }
 
-void get_products(int* product_ids[], string product_names[], float* product_prices[], int& list_size) {
+void get_products(int* product_ids, string* product_names, float* product_prices, int& list_size) {
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
 
 	fstream file_reader;
 	string current_line;
 	size_t last_digit_pos;
 	size_t searcher;
-	string current_line;
+
 
 
 	//INPUT file_reader
@@ -204,9 +204,9 @@ void get_products(int* product_ids[], string product_names[], float* product_pri
 				cout << "Product " << list_size + 1 << ": ";
 
 
-					product_ids[i] = temp_id;
-				product_names[i] = temp_name;
-				product_prices[i] = temp_price;
+				product_ids[list_size] = temp_id;
+				product_names[list_size] = temp_name;
+				product_prices[list_size] = temp_price;
 			}
 			//DECLARE col_1, col_2, col_3, and line_reader
 			int col_1;

@@ -181,7 +181,7 @@ void get_products(int* product_ids[], string product_names[], float* product_pri
 	string current_line;
 	size_t last_digit_pos;
 	size_t searcher;
-	std::string;
+	string current_line;
 
 
 	//INPUT file_reader
@@ -204,9 +204,10 @@ void get_products(int* product_ids[], string product_names[], float* product_pri
 				cout << "Product " << list_size + 1 << ": ";
 
 
-				temp_id = product_ids[i];
-				temp_name = product_names[i];
-				temp_price =product_prices[i] ; }
+					product_ids[i] = temp_id;
+				product_names[i] = temp_name;
+				product_prices[i] = temp_price;
+			}
 			//DECLARE col_1, col_2, col_3, and line_reader
 			int col_1;
 			string col_2;

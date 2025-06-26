@@ -10,7 +10,7 @@
 using namespace std;
 
 void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
-void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size);
+void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size);
 
 //main
 //Purpose: Display products available for purchase and get users input
@@ -168,7 +168,7 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 
 }
 
-void get_products(string product_ids[], string product_names[], double* product_prices[], int* list_size) {
+void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size) {
 	
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
     string current_line;
@@ -177,7 +177,7 @@ void get_products(string product_ids[], string product_names[], double* product_
 	size_t searcher;
 
 	//INPUT file_reader
-	file_reader.open("Products.txt");
+	filereader.open("Products.txt");
 	
 		//ASSIGN searcher to current_line.find_first_of("0123456789");
 		searcher = current_line.find_first_of("0123456789");

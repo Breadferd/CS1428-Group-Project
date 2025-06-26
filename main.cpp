@@ -46,8 +46,6 @@ int main() {
 	get_products(product_ids, product_names, product_prices, list_size);
 	get_discounts(discounts_list_size, discount_required_products, discount_original_products, discounts);
 
-
-	
 	//WHILE is_shopping IS true DO DISPLAY products from products file and checkout command 
 	while (is_shopping == true)
 	{
@@ -110,7 +108,8 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 	file_reader.open("Discounts.txt");
 
 	//WHILE file_reader != null 
-	
+	while (getline(file_reader, current_line))
+	{
 
 		//ASSIGN searcher to current_line.find_first_of("0123456789");
 		searcher = current_line.find_first_of("0123456789");

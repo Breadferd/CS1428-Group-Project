@@ -185,9 +185,9 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
 	 list_size = 0;
 		if (searcher != string::npos)
 		{
-	int temp_id;
+	int* temp_id;
         string temp_name;
-        double temp_price;
+        double* temp_price;
 			
     cout << "Enter product ID, Name, and Price" << endl;
 

@@ -1,28 +1,29 @@
 //Author(s): Nate Hartway
 //Purpose: Allow a user to purchase products from a grocery store. When the user is ready to checkout show them what theyre purchasing and their total.
-//Date:6/22/2025
-//Version:v0.4
+//Date:6/27/2025
+//Version:v0.5
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <fstream>
 #include <sstream>
 using namespace std;
 
-void get_discounts(int& discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts);
-void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size);
-
+void get_discounts(int& discounts_list_size, int*& discount_required_products, int*& discount_original_products, float*& discounts);
+void get_products(int*& product_ids, string*& product_names, float*& product_prices, int& list_of_products_size);
+void calculate_total(int user_input, int list_of_products_size, int discounts_list_size, int& cart_size, int* discount_required_products, int* product_ids, int*& product_ids_in_cart, float* discounts, float* product_prices, float*& product_prices_in_cart, int* discount_original_products, string* product_names, string*& product_names_in_cart, float& total);
 //main
 //Purpose: Display products available for purchase and get users input
 //Pre condition: Product file must exist 
 //Post condition: Close program when user is ready to checkout
 int main() {
 
-//START Main
- 
-	//DECLARE product_ids, product_names, product_prices, product_ids_in_cart, product_names_in_cart, product_prices_in_cart, discount_required_products, 
-	// discounts, discount_original_products and user_input
-	int* product_ids = new int[0];  
+	//START Main
+
+		//DECLARE product_ids, product_names, product_prices, product_ids_in_cart, product_names_in_cart, product_prices_in_cart, discount_required_products, 
+		// discounts, discount_original_products and user_input
+	int* product_ids = new int[0];
 	float* product_prices = new float[0];
 	int* product_ids_in_cart = new int[0];
 	float* product_prices_in_cart = new float[0];
@@ -32,12 +33,13 @@ int main() {
 
 	string* product_names = new string[0];
 	string* product_names_in_cart = new string[0];
-	int user_input;
+	int user_input = 0;
 
 	//ASSIGN list_of_products_size to 1, ASSIGN discounts_list_size to 1 and ASSIGN cart_size to 1
 	int list_of_products_size = 0;
 	int discounts_list_size = 0;
 	int cart_size = 0;
+	float total = 0;
 
 	//ASSIGN is_shopping to true
 	bool is_shopping = true;
@@ -51,10 +53,10 @@ int main() {
 	{
 
 		//FOR every product in product_names OUTPUT product_names[i]
-		for (int i = 0; i < list_of_products_size; i++)
+		for (int i = 0; i < 4; i++)
 		{
 
-			cout << product_names[i] << endl;
+			cout << "(" << product_ids[i] << ") " << product_names[i] << endl;
 
 		}
 
@@ -68,7 +70,7 @@ int main() {
 		if (user_input >= 0 && user_input <= list_of_products_size)
 		{
 
-
+			calculate_total(user_input, list_of_products_size, discounts_list_size, cart_size, discount_required_products, product_ids, product_ids_in_cart, discounts, product_prices, product_prices_in_cart, discount_original_products, product_names, product_names_in_cart, total);
 
 		}
 		//ELSE IF user_input IS -1 DO ASSIGN is_shopping to false
@@ -81,7 +83,7 @@ int main() {
 		//ELSE DO OUTPUT Please enter a valid input
 		else
 		{
-				
+
 			cout << "Please enter a valid input" << endl;
 
 		}
@@ -90,9 +92,9 @@ int main() {
 	}
 
 
-//END	
-    return 0;
-    
+	//END	
+	return 0;
+
 }
 
 //Get_discounts
@@ -101,7 +103,7 @@ int main() {
 //Pre-condition : There must be a discounts file with information in it.
 //Post-condition : Return three parallel arrays filled with the sorted discount information
 
-void get_discounts(int &discounts_list_size, int* discount_required_products, int* discount_original_products, float* discounts)
+void get_discounts(int& discounts_list_size, int*& discount_required_products, int*& discount_original_products, float*& discounts)
 {
 
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
@@ -131,12 +133,17 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 			//FOR evey entry in discount_required_products, discount_original_products and discounts 
 			// DO ASSIGN temp_required_products[i] to discount_required_products[i], ASSIGN temp_original_products[i] to discount_original_products[i],
 			//and ASSIGN temp_discounts[i] to discounts[i]
-			for (int i = 0; i < discounts_list_size; i++)
+			if (discounts_list_size > 0)
 			{
 
-				temp_required_products[i] = discount_required_products[i];
-				temp_original_products[i] = discount_original_products[i];
-				temp_discounts[i] = discounts[i];
+				for (int i = 0; i < discounts_list_size; i++)
+				{
+
+					temp_required_products[i] = discount_required_products[i];
+					temp_original_products[i] = discount_original_products[i];
+					temp_discounts[i] = discounts[i];
+
+				}
 
 			}
 
@@ -172,58 +179,78 @@ void get_discounts(int &discounts_list_size, int* discount_required_products, in
 
 	}
 
+	file_reader.close();
+
 }
 
-void get_products(int* product_ids[], string product_names[], double* product_prices[], int* list_size) {
-	
+void get_products(int*& product_ids, string*& product_names, float*& product_prices, int& list_of_products_size) {
 	//DECLARE file_reader, current_line, last_digit_pos and searcher
-    int* current_line;
-	fstream filereader;
+
+	fstream file_reader;
+	string current_line;
 	size_t last_digit_pos;
 	size_t searcher;
 
+
+
 	//INPUT file_reader
-	filereader.open("Products.txt");
-	
+	file_reader.open("Products.txt");
+	while (getline(file_reader, current_line))
+	{
 		//ASSIGN searcher to current_line.find_first_of("0123456789");
 		searcher = current_line.find_first_of("0123456789");
-			//IF searcher IS NOT NULL DO DECALRE temp_required_products, temp_original_products, and temp_discounts
-	 list_size = 0;
+		//IF searcher IS NOT NULL DO DECALRE temp_required_products, temp_original_products, and temp_discounts
+
 		if (searcher != string::npos)
 		{
-	int* temp_id;
-        string temp_name;
-        double* temp_price;
-			
-    cout << "Enter product ID, Name, and Price" << endl;
+			int* temp_id = new int[list_of_products_size + 1];
+			string* temp_name = new string[list_of_products_size + 1];
+			float* temp_price = new float[list_of_products_size + 1];
 
-    for (int* i=0; list_size > i; i++) {
-        cout << "Product " << list_size + 1 << ": ";
-        cin >> current_line;
+			if (list_of_products_size > 0)
+			{
 
-	temp_id = current_line; 
+				for (int i = 0; i < list_of_products_size; i++) {
 
-        cin >> temp_name >> temp_price;
+					temp_id[i] = product_ids[i];
+					temp_name[i] = product_names[i];
+					temp_price[i] = product_prices[i];
 
-    	temp_id = product_ids[i];
-    	temp_name = product_names[i];
-        temp_price =product_prices[i] ; }
+				}
+
+			}
+
 			//DECLARE col_1, col_2, col_3, and line_reader
-			int* col_1;
+			int col_1;
 			string col_2;
-			float* col_3;
+			float col_3;
 			std::istringstream line_reader(current_line);
 
 			//ASSIGN col_1, col_2, col_3 and to line_reader
 			line_reader >> col_1 >> col_2 >> col_3;
 
-			//ASSIGN temp_ID to col_1, ASSIGN temp_names to col_2, and 
+			//ASSIGN temp_ID to col_1, ASSIGN temp_names to col_2, and
 			//ASSIGN temp_price to col_3
-			temp_id = col_1;
-			temp_name = col_2;
-			temp_price = col_3;
-			}
+			temp_id[list_of_products_size] = col_1;
+			temp_name[list_of_products_size] = col_2;
+			temp_price[list_of_products_size] = col_3;
+
+			delete[] product_ids;
+			delete[] product_names;
+			delete[] product_prices;
+
+			product_ids = temp_id;
+			product_names = temp_name;
+			product_prices = temp_price;
+
+
+			list_of_products_size++;
 		}
+	}
+
+	file_reader.close();
+
+}
 
 //Author: Ernesto Jaimes-Lara 
 //Objective: Function to calculate items in cart 
@@ -233,70 +260,77 @@ void get_products(int* product_ids[], string product_names[], double* product_pr
 //START 
 
 
-void calculate_total(int user_input, int list_of_products_size, int discounts_list_size, int cart_size, int* discount_required_products, int* product_ids, int* product_ids_in_cart, int* discount_required_products, float* discounts, int* discount_original_products) {
-	//DECLARE function calculate_total()  
-	string name;
-	float cost;
-	//DECLARE string name 
-	float total = 0;
-	//DECLARE float total = 0 
-	//FOR every entry in product_ids int. i = 0; i < list_of_products_size 
 
-		//IF user_input == product_ids[i] DO ASSIGN selected_product_name to product_names[i] and ASSIGN selected_product_cost to product_prices 
+void calculate_total(int user_input, int list_of_products_size, int discounts_list_size, int& cart_size, int* discount_required_products, int* product_ids, int*& product_ids_in_cart, float* discounts, float* product_prices, float*& product_prices_in_cart, int* discount_original_products, string* product_names, string*& product_names_in_cart, float& total) {
+	//DECLARE 2 variables for selected cost and item name
+	string selected_product_name;
+	float selected_product_cost;
+
+	//FOR i < list_of_products_size IF user_input = product_ids THEN ASSIGN product_names to selected_product_name and THEN ASSIGN product_prices to selected_product_cost
 	for (int i = 0; i < list_of_products_size; i++) {
 		if (user_input == product_ids[i]) {
-			product_names[i] = selected_product_name;
-			product_prices[i] = selected_product_cost;
-
+			selected_product_name = product_names[i];
+			selected_product_cost = product_prices[i];
 		}
 	}
-	//FOR every entry in discount_required_products. int j = 0; j < discounts_list_size 
+	//FOR j < discounts_list_size
 	for (int j = 0; j < discounts_list_size; j++) {
-		//IF user_input == discount_required_products[j] DO
+		//IF user_input = discount_required_products
 		if (user_input == discount_required_products[j]) {
-
-			//FOR every entry in cart  int. k = 0 
+			//THEN FOR k < cart_size IF product_ids_in_cart = discount_original_products
 			for (int k = 0; k < cart_size; k++) {
-				//If  discount_original_products[j] == product_ids_in_cart[k] DO ASSIGN product_prices_in_cart[k] to discounts[j] 
-				if (discount_original_products[j] == product_ids_in_cart[k]) {
-					discounts[j] = product_prices_in_cart[k];
+				if (product_ids_in_cart[k] == discount_original_products[j]) {
+					//THEN ASSIGN discounts to product_prices_in_cart
+					product_prices_in_cart[k] = discounts[j];
 				}
 			}
 		}
-		//ELSE IF user_input == discount_original_products[j] 
+		//ELSE IF user_input = discount_original_products THEN FOR k < cart_size IF product_ids_in_cart = discount_required_products THEN ASSIGN discounts to selected_product_cost
 		else if (user_input == discount_original_products[j]) {
-
-			//FOR every entry in cart int g  int g; g < cart_size 
-			for (int g = 0; g < cart_size; g++) {
-				if (discount_required_products[j] == product_ids_in_cart[k]) {
-					discounts[j] = cost;
+			for (int k = 0; k < cart_size; k++) {
+				if (product_ids_in_cart[k] == discount_required_products[j]) {
+					selected_product_cost = discounts[j];
 				}
 			}
 		}
 	}
-	//If  discount_ required _products[j] == product_ids_in_cart[k] DO ASSIGN cost to discounts[j] 
-
-
-
-
-
-//DISPLAY product_names_in_cart[i] loop 
+	//DECLARE temporary array variables 
+	int* temp_ids = new int[cart_size + 1];
+	float* temp_prices = new float[cart_size + 1];
+	string* temp_names = new string[cart_size + 1];
+	//FOR i < cart_size ASSIGN product_ids_in_cart, product_prices_in_cart, product_names_in_cart to temps
 	for (int i = 0; i < cart_size; i++) {
+		temp_ids[i] = product_ids_in_cart[i];
+		temp_prices[i] = product_prices_in_cart[i];
+		temp_names[i] = product_names_in_cart[i];
+	}
+	//ASSIGN user_input to temp_ids ASSIGN selected_product_cost to temp_prices, and ASSIGN selected_product_name to temp_names
+	temp_ids[cart_size] = user_input;
+	temp_prices[cart_size] = selected_product_cost;
+	temp_names[cart_size] = selected_product_name;
+
+	//DELETE product_ids_in_cart, product_prices_in_cart, and product_names_in_cart from memory
+	delete[] product_ids_in_cart;
+	delete[] product_prices_in_cart;
+	delete[] product_names_in_cart;
+
+	//ASSIGN temp_ids to product_ids_in_cart, ASSIGN temp_prices to product_prices_in_cart, and ASSIGN temp_names to product_names_in_cart
+	product_ids_in_cart = temp_ids;
+	product_prices_in_cart = temp_prices;
+	product_names_in_cart = temp_names;
+
+	//cart_size++
+	cart_size++;
+
+	total = 0;
+	//OUTPUT current items in cart
+	cout << "Items in Cart: " << endl;
+	//FOR i < cart_size OUTPUT product_prices_in_cart with product_prices_in_cart and CALCULATE total
+	for (int i = 0; i < cart_size; i++) {
+		cout << product_names_in_cart[i] << ": " << fixed << setprecision(2) << product_prices_in_cart[i] << endl;
 		total += product_prices_in_cart[i];
 	}
 
-	// ASSIGN total += product_prices_in_cart[i] loop 
-
-	//INCREMENT i for both 
-
-
+	//OUTPUT total
+	cout << "Cart Total: " << fixed << setprecision(2) << total << endl;
 }
-// END LOOP 
-
-
-cout << "Cart Total: " << total << endl
-//DISPLAY total 
-
-
-
-//END 

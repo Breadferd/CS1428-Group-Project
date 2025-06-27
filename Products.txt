@@ -1,0 +1,5 @@
+ProdcutID	ProductName	Price
+0		Milk		3.00
+1		Eggs		6.00
+2		Chips		2.00
+3		Cereal		6.00

@@ -182,6 +182,11 @@ void get_discounts(int& discounts_list_size, int*& discount_required_products, i
 	file_reader.close();
 
 }
+//Get_discounts
+//Author: Brad Hunt
+//Objective : read product information from a productfile & produce it in main
+//Pre-condition : There must be a products file with information in it.
+//Post-condition : Return three parallel arrays filled with the sorted product information
 
 void get_products(int*& product_ids, string*& product_names, float*& product_prices, int& list_of_products_size) {
 	//DECLARE file_reader, current_line, last_digit_pos and searcher

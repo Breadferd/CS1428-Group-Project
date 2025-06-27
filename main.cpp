@@ -182,7 +182,7 @@ void get_discounts(int& discounts_list_size, int*& discount_required_products, i
 	file_reader.close();
 
 }
-//Get_discounts
+//Get_products
 //Author: Brad Hunt
 //Objective : read product information from a productfile & produce it in main
 //Pre-condition : There must be a products file with information in it.

@@ -21,8 +21,8 @@ int main() {
 
 	//START Main
 
-		//DECLARE product_ids, product_names, product_prices, product_ids_in_cart, product_names_in_cart, product_prices_in_cart, discount_required_products, 
-		// discounts, discount_original_products and user_input
+	//DECLARE product_ids, product_names, product_prices, product_ids_in_cart, product_names_in_cart, product_prices_in_cart, discount_required_products, 
+	// discounts, discount_original_products and user_input
 	int* product_ids = new int[0];
 	float* product_prices = new float[0];
 	int* product_ids_in_cart = new int[0];

@@ -196,8 +196,6 @@ void get_products(int*& product_ids, string*& product_names, float*& product_pri
 	size_t last_digit_pos;
 	size_t searcher;
 
-
-
 	//INPUT file_reader
 	file_reader.open("Products.txt");
 	while (getline(file_reader, current_line))
@@ -212,18 +210,18 @@ void get_products(int*& product_ids, string*& product_names, float*& product_pri
 			string* temp_name = new string[list_of_products_size + 1];
 			float* temp_price = new float[list_of_products_size + 1];
 
-			if (list_of_products_size > 0)
-			{
-
-				for (int i = 0; i < list_of_products_size; i++) {
-
-					temp_id[i] = product_ids[i];
-					temp_name[i] = product_names[i];
-					temp_price[i] = product_prices[i];
-
-				}
-
-			}
+						if (list_of_products_size > 0)
+						{
+			
+							for (int i = 0; i < list_of_products_size; i++) {
+			
+								temp_id[i] = product_ids[i];
+								temp_name[i] = product_names[i];
+								temp_price[i] = product_prices[i];
+			
+							}
+			
+						}
 
 			//DECLARE col_1, col_2, col_3, and line_reader
 			int col_1;
@@ -239,16 +237,16 @@ void get_products(int*& product_ids, string*& product_names, float*& product_pri
 			temp_id[list_of_products_size] = col_1;
 			temp_name[list_of_products_size] = col_2;
 			temp_price[list_of_products_size] = col_3;
-
+			//DELETE product_ids, product_names, and product_prices from memory
 			delete[] product_ids;
 			delete[] product_names;
 			delete[] product_prices;
-
+			//ASSIGN product_ids to temp_id, ASSIGN product_names to temp_names, and ASSIGN product_prices to temp_price
 			product_ids = temp_id;
 			product_names = temp_name;
 			product_prices = temp_price;
 
-
+			// List of products size ++
 			list_of_products_size++;
 		}
 	}
